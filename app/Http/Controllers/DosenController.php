@@ -14,72 +14,39 @@ class DosenController extends Controller
      */
     public function index()
     {
-        //
+        $dosen = Dosen::all();
+        return view('dosen.index',compact('dosen'));
+    }
+    public function create(){
+        return view('dosen.create');
+    }
+    //
+    public function store(Request $request){
+        $dosen = new Dosen();
+        $dosen->nama = $request->nama;
+        $dosen->nipd = $request->nipd;
+        $dosen->save();
+        return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil Dibuat']);
+    }
+    public function show($id){
+        $dosen = Dosen::findOrFail($id);
+        return view('dosen.show',compact('dosen'));
+    }
+    public function edit($id){
+        $dosen = Dosen::findOrFail($id);
+        return view('dosen.edit',compact('dosen'));
+    }
+    public function update($id){
+        $dosen = Dosen::findOrFail($id);
+        $dosen->nama = $request->nama;
+        $dosen->nipd = $request->nipd;
+        $dosen->save();
+        return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil Di edit']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Dosen  $dosen
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Dosen $dosen)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Dosen  $dosen
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dosen $dosen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dosen  $dosen
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Dosen $dosen)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Dosen  $dosen
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Dosen $dosen)
     {
-        //
+        $dosen = Dosen::findOrFail($id)->delete();
+        return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil DI Hapus']);
     }
 }
