@@ -21,6 +21,10 @@ class DosenController extends Controller
         return view('dosen.create');
     }
     //
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    //
     public function store(Request $request){
         $dosen = new Dosen();
         $dosen->nama = $request->nama;
@@ -36,7 +40,7 @@ class DosenController extends Controller
         $dosen = Dosen::findOrFail($id);
         return view('dosen.edit',compact('dosen'));
     }
-    public function update($id){
+    public function update(Request $request, $id){
         $dosen = Dosen::findOrFail($id);
         $dosen->nama = $request->nama;
         $dosen->nipd = $request->nipd;
@@ -44,7 +48,7 @@ class DosenController extends Controller
         return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil Di edit']);
     }
 
-    public function destroy(Dosen $dosen)
+    public function destroy(Request $request, $id)
     {
         $dosen = Dosen::findOrFail($id)->delete();
         return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil DI Hapus']);
