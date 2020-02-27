@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    JAY Cell
+                    JAY
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,16 @@
                     @guest
                     @else
                     <li class="nav-item">
-                        <a href="{{route('dosen.index')}}" class="navlink">
-                        Dosen
-                    </a>
+                        <a href="{{route('dosen.index')}}" class="nav-link">Dosen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('hobi.index')}}" class="nav-link">Hobi</a>
+                    </li>
+                    <li class="nav-item">
+                            <a href="{{route('mahasiswa.index')}}" class="nav-link">Mahasiswa</a>
+                        </li>
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link">Home</a>
                     </li>
                     @endguest
                     </ul>
