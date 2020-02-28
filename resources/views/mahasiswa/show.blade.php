@@ -8,30 +8,22 @@
                     Tambah DAta Mahasiswa
                 </div>
                 <div class="card-body">
-                    <form action="{{route('mahasiswa.update',$mhs->id)}}" method="POST">
+                    <form action="{{route('mahasiswa.show',$mhs->id)}}" method="post">
                     @csrf
-                    @method('PUT')
                     <div class="form-group">
                         <label for="">Nama Mahasiswa</label>
-                        <input type="text" name="nama" value="{{$mhs->nama}}" class="form-control" required>
+                        <input type="text" value="{{$mhs->nama}}"  class="form-control" readonly>
                     </div>
                     <div class="form-group">
                             <label for="">NIM</label>
-                            <input type="text" name="nim" value="{{$mhs->nim}}" class="form-control" required>
+                            <input type="text" value="{{$mhs->nim}}" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                                 <label for="">Nama Dosen</label>
-                                <select  name="id_dosen" class="form-control" required>
-                                    @foreach ($dosen as $data)
-                                    <option value="{{$data->id}}"
-                                    {{$data->id == $mhs->id_dosen ? "selected" : ""}}
-                            >{{$data->nama}}</option>
-                                    @endforeach
-                                </select>
+                        <input type="text" value="{{$mhs->dosen->nama}}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                    <button type="submit"  class="btn btn-primary btn-block"> Simpan
-                                    </button>
+                                    <a href="{{url()->previous()}}" class="btn btn-primary">Kembali</a>
                                 </div>
                     </form>
                 </div>
